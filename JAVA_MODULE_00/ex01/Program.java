@@ -7,7 +7,7 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
         int number = scanner.nextInt();
         if (number <= 1) {
-            System.out.println("IllegalArgument");
+            System.err.println("IllegalArgument");
             System.exit(-1);
         }
         while ((iterations * iterations) <= number)
