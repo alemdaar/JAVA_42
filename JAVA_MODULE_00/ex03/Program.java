@@ -5,7 +5,7 @@ public class Program {
     {
         Scanner scanner = new Scanner(System.in);
         String line = scanner.nextLine();
-        String expectedWeek;
+        String currentWeek;
         int i = 0;
         int min = 0;
         long hold = 0;
@@ -16,8 +16,8 @@ public class Program {
                 line = scanner.nextLine();
                 continue;
             }
-            expectedWeek = "Week " + (i + 1);
-            if (expectedWeek.equals(line) == false)
+            currentWeek = "Week " + (i + 1);
+            if (currentWeek.equals(line) == false)
             {
                 System.err.println("IllegalArgument");
                 System.exit(-1);
@@ -49,8 +49,8 @@ public class Program {
         {
 
             min = (int) (hold % 10);
-            expectedWeek = "Week " + (i + 1) + " ";
-            System.out.print(expectedWeek);
+            currentWeek = "Week " + (i + 1) + " ";
+            System.out.print(currentWeek);
             int k = 0;
             while (k++ < min)
                 System.out.print("=");
