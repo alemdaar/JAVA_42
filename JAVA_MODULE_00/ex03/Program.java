@@ -5,17 +5,19 @@ public class Program {
     {
         Scanner scanner = new Scanner(System.in);
         String line = scanner.nextLine();
-        String[] weeks = {"Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8",
-            "Week 9", "Week 10", "Week 11", "Week 12", "Week 13",
-            "Week 14", "Week 15", "Week 16", "Week 17", "Week 18"};
+        String expectedWeek;
         int i = 0;
         int min = 0;
-        int hold = 0;
+        long hold = 0;
         while (!line.equals("42"))
         {
             if (i >= 18)
+            {
+                line = scanner.nextLine();
                 continue;
-            if (weeks[i].equals(line) == false)
+            }
+            expectedWeek = "Week " + (i + 1);
+            if (expectedWeek.equals(line) == false)
             {
                 System.err.println("IllegalArgument");
                 System.exit(-1);
@@ -29,21 +31,32 @@ public class Program {
                     min = tmp;
                 j++;
             }
-            hold = (hold * 10) + (min);
+            int tmp = 0;
+            long tenSquare = 1;
+            while (tmp++ < i)
+                tenSquare = tenSquare * 10;
+            // hold = hold + min*(10^i)
+            hold = hold + min * (tenSquare);
             i++;
+            // nextInt() reads the number but leaves the '\n' at the end of the line.
+            // Consume it to move the scanner position to the next line.
+            scanner.nextLine();
+            // Now read the next line properly.
             line = scanner.nextLine();
         }
         i = 0;
-        while ((hold / 10) != 0)
-            {
-                min = hold % 10;
-                System.out.printf("Week %d\n", i + 1);
-                int k = 0;
-                while (k++ < min)
-                    System.out.print("=");
-                i++;
+        while (hold != 0)
+        {
+
+            min = (int) (hold % 10);
+            expectedWeek = "Week " + (i + 1) + " ";
+            System.out.print(expectedWeek);
+            int k = 0;
+            while (k++ < min)
+                System.out.print("=");
+            System.out.println(">");
+            i++;
             hold /= 10;
         }
-        System.out.println(">");
     }
 }
